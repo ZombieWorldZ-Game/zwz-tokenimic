@@ -3,7 +3,7 @@ import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
 import {expect} from 'chai';
 import {ethers} from 'hardhat';
 
-describe('ZWTokenAntiBotTest', function () {
+describe('ZwZTokenAntiBotTest', function () {
   let owner: SignerWithAddress;
   let account1: SignerWithAddress;
   let account2: SignerWithAddress;
@@ -14,8 +14,8 @@ describe('ZWTokenAntiBotTest', function () {
   });
 
   it('Antibot on', async function () {
-    const ZWToken = await ethers.getContractFactory('ZWToken');
-    const token = await ZWToken.deploy();
+    const ZwZToken = await ethers.getContractFactory('ZwZToken');
+    const token = await ZwZToken.deploy();
 
     // only owner can transfer if antibot enable and
     await token.transfer(account1.address, BigNumber.from(20));
@@ -48,8 +48,8 @@ describe('ZWTokenAntiBotTest', function () {
   });
 
   it('Antibot off', async function () {
-    const ZWToken = await ethers.getContractFactory('ZWToken');
-    const token = await ZWToken.deploy();
+    const ZwZToken = await ethers.getContractFactory('ZwZToken');
+    const token = await ZwZToken.deploy();
     await expect(token.setAntiBot(false))
       .to.emit(token, 'AntibotEnabled')
       .withArgs(false);
