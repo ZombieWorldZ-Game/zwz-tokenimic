@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.7;
+pragma solidity 0.8.7;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -11,7 +11,7 @@ abstract contract AntiBot is Ownable {
     event WhiteListUpdate(address[] newWhiteList, address[] removedWhiteList);
     event AntibotEnabled(bool enable);
 
-    function modifyWhiteList(address[] memory newWhiteList, address[] memory removedWhiteList) public onlyOwner {
+    function modifyWhiteList(address[] calldata newWhiteList, address[] calldata removedWhiteList) external onlyOwner {
         for (uint256 index; index < newWhiteList.length; index++) {
             whiteList[newWhiteList[index]] = true;
         }
